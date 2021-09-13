@@ -1,0 +1,58 @@
+* {
+    border: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  .App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  .avatar-wrapper img {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .user-details-wrapper {
+    display: flex;
+  }
+  
+  .user-info-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .user-info-wrapper-username {
+    color: hotpink;
+    font-family: monospace;
+  }
+  
+  .user-info-wrapper-description span {
+    font-weight: bold;
+  }
+  
+  .user-info-wrapper-description ul {
+    list-style-type: none;
+  }
+  
+  .user-info-wrapper-description li {
+    font-size: 24px;
+  }
+  
+  .list-comment {
+    list-style-type: none;
+  }
+  
+  .list-comment-name {
+    font-size: 24px;
+  }
+  .content_wrapper {
+    margin-top: 20px;
+  }
+  
+  .content_wrapper h2 {
+    margin-bottom: 15px;
+  }
+  
