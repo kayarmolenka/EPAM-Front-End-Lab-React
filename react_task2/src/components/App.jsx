@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div className="wrapper-app">
-        <UserDetails data={state} />
+        <UserDetails userInfo={state} />
         <Content />
       </div>
     );

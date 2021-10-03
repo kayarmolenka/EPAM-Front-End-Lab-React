@@ -2,7 +2,7 @@ import { Component } from "react";
 
 class UserInfo extends Component {
   render() {
-    const user = this.props.data;
+    const user = this.props.userInfo;
     return (
       <div className="user-info-wrapper">
         <div className="user-info-wrapper-username">

@@ -7,7 +7,7 @@ class UserDetails extends Component {
     return (
       <div className="user_details_wrapper">
         <Avatar />
-        <UserInfo data={this.props.data} />
+        <UserInfo userInfo={this.props.userInfo} />
       </div>
     );
   }
