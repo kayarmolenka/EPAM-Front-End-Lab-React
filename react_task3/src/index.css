@@ -1,0 +1,49 @@
+* {
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.user_details_wrapper {
+  display: flex;
+}
+
+.avatar-wrapper img {
+  height: 100%;
+  width: 100%;
+}
+
+.user-info-wrapper {
+  margin-left: 52px;
+}
+
+.user-info-wrapper-username {
+  font-family: cursive;
+}
+
+/* .user-info-wrapper-description {
+} */
+
+.user-info-wrapper-description li {
+  list-style-type: none;
+  padding: 18px;
+  border: 1px solid black;
+  margin-bottom: 7px;
+  border-radius: 13px;
+}
+
+.album-item {
+  padding: 5px;
+  margin: 5px;
+  border: 1px solid black;
+}
+
+.album-item:hover {
+  cursor: pointer;
+  background: rebeccapurple;
+}
