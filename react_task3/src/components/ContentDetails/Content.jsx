@@ -1,53 +1,58 @@
 import Album from "./Album";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 function Content() {
-  const [photos, setPhotos] = useState([]);
   const [albums, setAlbums] = useState([]);
+  const [activeAlbum, setActiveAlbum] = useState(0);
+  const [photos, setPhotos] = useState([]);
+
+  const handleAlbum = useCallback((album) => {
+    setActiveAlbum(album);
+  }, []);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/albums")
       .then((res) => res.json())
       .then((album) => {
-        console.log("album", album);
         setAlbums(album);
       });
   }, []);
 
-  const showPhotos = async (e) => {
-    fetch("https://jsonplaceholder.typicode.com/albums/1/photos")
+  useEffect(() => {
+    fetch(`https://jsonplaceholder.typicode.com/albums/${activeAlbum.id}/photos`)
       .then((res) => res.json())
-      .then((photo) => {
-        setPhotos(photo);
-        // console.log("photos", photos);
+      .then((photos) => {
+        setPhotos(photos);
       });
-    console.log(e.target);
+  }, [activeAlbum]);
 
-    // const value = photos.map((ph) => {
-    //   console.log(ph);
-    //   return <img src={ph.thumbnailUrl} alt="" />;
-    // });
-    // e.target.innerHTML = value.map((el) => el.thumbnailUrl);
-  };
-  console.log("photos", photos);
+  const toggleBack = useCallback(() => {
+    setActiveAlbum(0);
+  }, []);
 
-  // {photos.map((ph) => (
-  //   <img src={ph.thumbnailUrl} alt="" />
-  // ))}
-  const po = photos.map((ph) => ph.thumbnailUrl);
-  console.log("po", po);
-  {
-    /* <ol><Album showPhotos={showPhotos} /></ol> */
-  }
-
-  return albums.map(
-    (alb) =>
-      !po.length && (
-        <div className="album-item" id={alb.id} key={alb.id} onClick={showPhotos}>
+  return albums.map((alb) => {
+    if (Number(activeAlbum.id) === alb.id) {
+      return (
+        <div className="wrapper-content">
+          <div className="album-item" id={alb.id} key={alb.id}>
+            {photos.map((photo) => (
+              <img className="wrapper-content__picture" src={photo.thumbnailUrl} alt="" />
+            ))}
+          </div>
+          <div className="wrapper-content__arrow-back" onClick={toggleBack}>
+            <i class="fas fa-long-arrow-alt-left"></i>
+            <p>Collapse album</p>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div className="album-item" id={alb.id} key={alb.id} onClick={(e) => handleAlbum(e.target)}>
           {alb.title}
         </div>
-      ),
-  );
+      );
+    }
+  });
 }
 
 export default Content;

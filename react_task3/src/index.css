@@ -11,11 +11,12 @@
 
 .user_details_wrapper {
   display: flex;
+  justify-content: space-around;
 }
 
 .avatar-wrapper img {
   height: 100%;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .user-info-wrapper {
@@ -45,5 +46,35 @@
 
 .album-item:hover {
   cursor: pointer;
-  background: rebeccapurple;
+  /* background: rebeccapurple; */
+}
+
+.wrapper-content {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.wrapper-content__picture {
+  width: 100px;
+  height: 100px;
+}
+
+.fa-long-arrow-alt-left {
+  font-size: 47px;
+}
+
+.wrapper-content__arrow-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper-content__arrow-back:hover {
+  cursor: pointer;
+  background: greenyellow;
+}
+
+.wrapper-content__arrow-back p {
+  font-size: 26px;
+  font-family: cursive;
 }
