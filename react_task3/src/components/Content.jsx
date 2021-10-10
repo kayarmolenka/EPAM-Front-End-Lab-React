@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 function Content() {
   const [albums, setAlbums] = useState([]);
@@ -16,7 +16,7 @@ function Content() {
         setAlbums(album);
       })
       .catch((er) => console.log("ERRRROOR", er));
-  }, []);
+  }, [albums]);
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/albums/${activeAlbum.id}/photos`)
@@ -34,17 +34,17 @@ function Content() {
   return albums.map((alb) => {
     if (Number(activeAlbum.id) === alb.id) {
       return (
-        <>
-          <div className="album-item" id={alb.id} key={alb.id}>
+        <React.Fragment key={alb.id}>
+          <div className="album-item" id={alb.id} key={alb.title}>
             {photos.map((photo) => (
-              <img className="wrapper-content__picture" src={photo.thumbnailUrl} alt="" />
+              <img className="wrapper-content__picture" key={photo.id} src={photo.thumbnailUrl} alt="" />
             ))}
           </div>
           <div className="wrapper-content__arrow-back" onClick={toggleBack}>
             <i className="fas fa-long-arrow-alt-left"></i>
             <p>Collapse album</p>
           </div>
-        </>
+        </React.Fragment>
       );
     }
     return (
