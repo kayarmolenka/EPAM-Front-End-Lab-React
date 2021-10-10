@@ -1,6 +1,6 @@
 import "../index.css";
-import Content from "../components/ContentDetails/Content";
-import UserDetails from "../components/UserDetails/UserDetails";
+import Content from "./Content";
+import UserDetails from "./UserDetails/UserDetails";
 import state from "../state";
 
 function App() {

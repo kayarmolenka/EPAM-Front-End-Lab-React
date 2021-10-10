@@ -16,7 +16,6 @@
 
 .avatar-wrapper img {
   height: 100%;
-  /* width: 100%; */
 }
 
 .user-info-wrapper {
@@ -26,9 +25,6 @@
 .user-info-wrapper-username {
   font-family: cursive;
 }
-
-/* .user-info-wrapper-description {
-} */
 
 .user-info-wrapper-description li {
   list-style-type: none;
@@ -46,12 +42,6 @@
 
 .album-item:hover {
   cursor: pointer;
-  /* background: rebeccapurple; */
-}
-
-.wrapper-content {
-  display: flex;
-  flex-direction: row-reverse;
 }
 
 .wrapper-content__picture {

@@ -1,4 +1,3 @@
-import Album from "./Album";
 import { useState, useEffect, useCallback } from "react";
 
 function Content() {
@@ -15,7 +14,8 @@ function Content() {
       .then((res) => res.json())
       .then((album) => {
         setAlbums(album);
-      });
+      })
+      .catch((er) => console.log("ERRRROOR", er));
   }, []);
 
   useEffect(() => {
@@ -23,7 +23,8 @@ function Content() {
       .then((res) => res.json())
       .then((photos) => {
         setPhotos(photos);
-      });
+      })
+      .catch((er) => console.log("ERRRROOR", er));
   }, [activeAlbum]);
 
   const toggleBack = useCallback(() => {
@@ -33,25 +34,24 @@ function Content() {
   return albums.map((alb) => {
     if (Number(activeAlbum.id) === alb.id) {
       return (
-        <div className="wrapper-content">
+        <>
           <div className="album-item" id={alb.id} key={alb.id}>
             {photos.map((photo) => (
               <img className="wrapper-content__picture" src={photo.thumbnailUrl} alt="" />
             ))}
           </div>
           <div className="wrapper-content__arrow-back" onClick={toggleBack}>
-            <i class="fas fa-long-arrow-alt-left"></i>
+            <i className="fas fa-long-arrow-alt-left"></i>
             <p>Collapse album</p>
           </div>
-        </div>
-      );
-    } else {
-      return (
-        <div className="album-item" id={alb.id} key={alb.id} onClick={(e) => handleAlbum(e.target)}>
-          {alb.title}
-        </div>
+        </>
       );
     }
+    return (
+      <div className="album-item" id={alb.id} key={alb.id} onClick={(e) => handleAlbum(e.target)}>
+        {alb.title}
+      </div>
+    );
   });
 }
 
