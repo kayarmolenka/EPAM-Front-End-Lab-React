@@ -9,6 +9,8 @@ function Content() {
     setActiveAlbum(album);
   }, []);
 
+  const startedEvent = useCallback((e) => handleAlbum(e.target), [handleAlbum]);
+
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/albums")
       .then((res) => res.json())
@@ -16,7 +18,7 @@ function Content() {
         setAlbums(album);
       })
       .catch((er) => console.log("ERRRROOR", er));
-  }, [albums]);
+  }, []);
 
   useEffect(() => {
     fetch(`https://jsonplaceholder.typicode.com/albums/${activeAlbum.id}/photos`)
@@ -48,7 +50,7 @@ function Content() {
       );
     }
     return (
-      <div className="album-item" id={alb.id} key={alb.id} onClick={(e) => handleAlbum(e.target)}>
+      <div className="album-item" id={alb.id} key={alb.id} onClick={startedEvent}>
         {alb.title}
       </div>
     );
