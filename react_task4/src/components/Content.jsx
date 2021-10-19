@@ -51,7 +51,7 @@ function Content() {
     if (Number(activeAlbum.id) === alb.id) {
       return (
         <React.Fragment key={alb.id}>
-          <div className="album-item" id={alb.id} key={alb.title}>
+          <div className="album-item" id={alb.id}>
             {photosFromStore.map((photo) => (
               <img className="wrapper-content__picture" key={photo.id} src={photo.thumbnailUrl} alt="" />
             ))}

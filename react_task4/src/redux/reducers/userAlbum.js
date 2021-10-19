@@ -7,7 +7,7 @@ const defaultState = {
 export default function userAlbum(state = defaultState, action) {
   switch (action.type) {
     case ADD_ONE_ALBUM:
-      return { ...state, userAlbum: [...state.userAlbum, action.album] };
+      return { ...state, userAlbum: [...state.userAlbum, action.payload] };
     default:
       return state;
   }

@@ -5,9 +5,9 @@ const defaultState = [];
 export default function photos(state = defaultState, action) {
   switch (action.type) {
     case ADD_MANY_PHOTOS:
-      return [...action.photos];
+      return [...action.payload];
     case ADD_ONE_PHOTO:
-      return [...state, action.photo];
+      return [...state, action.payload];
     default:
       return state;
   }
