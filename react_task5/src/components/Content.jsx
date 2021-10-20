@@ -6,6 +6,7 @@ import ModalWindow from "./ModalWindow";
 
 function Content() {
   const [activeAlbum, setActiveAlbum] = useState(0);
+  const [activeModal, setActiveModal] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -32,13 +33,16 @@ function Content() {
   }, []);
 
   const callModalWindow = useCallback(() => {
-    console.log(1);
+    setActiveModal(true);
   }, []);
 
-  const addAlbum = useCallback(() => {
-    const album = { userId: 1, id: new Date().toString(), title: "user album" };
-    dispatch(addOneAlbums(album));
-  }, [dispatch]);
+  const addAlbum = useCallback(
+    (albumTitle) => {
+      const album = { userId: 1, id: new Date().toString(), title: albumTitle };
+      dispatch(addOneAlbums(album));
+    },
+    [dispatch],
+  );
 
   const addPhoto = useCallback(() => {
     const photo = {
@@ -84,9 +88,12 @@ function Content() {
       <button className="btn__add--album" onClick={callModalWindow}>
         Add album
       </button>
-      <ModalWindow>
-        <h1>Hello World</h1>
-      </ModalWindow>
+      <ModalWindow
+        title="Do you want to add album?"
+        activeModal={activeModal}
+        onClose={setActiveModal}
+        addAlbum={addAlbum}
+      ></ModalWindow>
     </>
   );
 }
