@@ -96,19 +96,15 @@
 }
 
 .btn_scroll {
-  padding: 10px 15px;
-  background: rosybrown;
-  color: white;
-  font-family: cursive;
   position: fixed;
   right: 10px;
-  top: 20%;
+  top: 70%;
+  font-size: 38px;
+  color: cyan;
 }
 
 .btn_scroll:hover {
   cursor: pointer;
-  background: greenyellow;
-  color: black;
 }
 
 #input__age {
@@ -189,4 +185,31 @@
 .modal-body__input {
   padding: 5px 10px;
   border: 1px solid grey;
+}
+
+.warning-block {
+  color: red;
+  font-size: 24px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana,
+    sans-serif;
+  display: none;
+}
+
+.warning-block--show {
+  display: block;
+}
+
+.wrapper-hook_usePre {
+  margin: 15px 0;
+  border: 1px solid blueviolet;
+  padding-left: 10px;
+}
+
+.btn_hookPrevious {
+  padding: 10px 15px;
+  background: aquamarine;
+  color: black;
+  font-size: larger;
+  font-family: cursive;
+  cursor: pointer;
 }

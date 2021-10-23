@@ -1,7 +1,6 @@
-import Portal from "./Portal";
 import React, { useCallback, useState } from "react";
 
-function ModalWindow({ title, activeModal, onClose, addAlbum }) {
+function ModalWindow({ title, activeModal, onClose, textBody, addAlbum, textBodyTwo }) {
   const [valueInput, setValueInput] = useState("");
 
   const closeModalWindow = useCallback(() => {
@@ -10,9 +9,13 @@ function ModalWindow({ title, activeModal, onClose, addAlbum }) {
   }, [onClose]);
 
   const createAlbum = useCallback(() => {
-    addAlbum(valueInput);
-    onClose();
-    setValueInput("");
+    if (valueInput !== "") {
+      addAlbum(valueInput);
+      onClose();
+      setValueInput("");
+    } else {
+      document.querySelector(".warning-block").classList.add("warning-block--show");
+    }
   }, [addAlbum, onClose, valueInput]);
 
   const handleInputValue = useCallback(
@@ -29,7 +32,6 @@ function ModalWindow({ title, activeModal, onClose, addAlbum }) {
   return (
     <>
       {activeModal && (
-        // <Portal>
         <div className="modal-shadow" onClick={closeModalWindow}>
           <div className="modal-window__wrapper" onClick={stopClosed}>
             <div className="modal-window__header">
@@ -39,13 +41,15 @@ function ModalWindow({ title, activeModal, onClose, addAlbum }) {
               </div>
             </div>
             <div className="modal-window__body">
-              <div className="modal-body__text">If yes, enter its name and click submit.</div>
+              <div className="modal-body__text">{textBody}</div>
+              <div className="modal-body__text">{textBodyTwo}</div>
               <input
                 value={valueInput}
                 onChange={handleInputValue}
                 className="modal-body__input"
                 type="text"
               />
+              <div className="warning-block">Enter the correct data</div>
             </div>
             <div className="modal-window__footer">
               <button onClick={closeModalWindow}>Close</button>
@@ -53,7 +57,6 @@ function ModalWindow({ title, activeModal, onClose, addAlbum }) {
             </div>
           </div>
         </div>
-        // </Portal>
       )}
     </>
   );

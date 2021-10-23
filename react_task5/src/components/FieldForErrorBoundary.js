@@ -17,7 +17,12 @@ class FieldForErrorBoundary extends Component {
     if (this.state.counter === 5) {
       throw new Error("I crashed!");
     }
-    return <h1 onClick={this.handleClick}>{this.state.counter}</h1>;
+    return (
+      <>
+        <h1>Get to 5</h1>
+        <h2 onClick={this.handleClick}>{this.state.counter}</h2>
+      </>
+    );
   }
 }
 

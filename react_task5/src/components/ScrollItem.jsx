@@ -12,9 +12,9 @@ function ScrollItem() {
   };
 
   return (
-    <button className="btn_scroll" onClick={scrollPage}>
-      Scroll page
-    </button>
+    <div className="btn_scroll" onClick={scrollPage}>
+      <i className="fas fa-arrow-circle-down"></i>
+    </div>
   );
 }
 

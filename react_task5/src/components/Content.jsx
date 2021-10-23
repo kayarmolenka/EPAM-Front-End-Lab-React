@@ -6,7 +6,8 @@ import ModalWindow from "./ModalWindow";
 
 function Content() {
   const [activeAlbum, setActiveAlbum] = useState(0);
-  const [activeModal, setActiveModal] = useState(false);
+  const [activeModalAlbum, setActiveModalAlbum] = useState(false);
+  const [activeModalPhotos, setActiveModalPhotos] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -33,7 +34,11 @@ function Content() {
   }, []);
 
   const callModalWindow = useCallback(() => {
-    setActiveModal(true);
+    setActiveModalAlbum(true);
+  }, []);
+
+  const callModalWindowPhoto = useCallback(() => {
+    setActiveModalPhotos(true);
   }, []);
 
   const addAlbum = useCallback(
@@ -44,17 +49,41 @@ function Content() {
     [dispatch],
   );
 
-  const addPhoto = useCallback(() => {
-    const photo = {
-      albumId: 90,
-      id: new Date().toString(),
-      thumbnailUrl: "https://via.placeholder.com/150/a335a",
-      title: "officiis similique eligendi excepturi",
-      url: "https://avotar.ru/avatar/krutye/150/38.jpg",
-    };
+  const addPhoto = useCallback(
+    (urlPhoto) => {
+      const photo = {
+        albumId: 90,
+        id: new Date().toString(),
+        thumbnailUrl: urlPhoto,
+        title: "officiis similique eligendi excepturi",
+        url: urlPhoto,
+      };
 
-    dispatch(addOnePhotos(photo));
-  }, [dispatch]);
+      dispatch(addOnePhotos(photo));
+    },
+    [dispatch],
+  );
+
+  const modalForAlbums = (
+    <ModalWindow
+      title="Do you want to add album?"
+      activeModal={activeModalAlbum}
+      onClose={setActiveModalAlbum}
+      textBody="If yes, enter its name and click submit."
+      addAlbum={addAlbum}
+    ></ModalWindow>
+  );
+
+  const modalForPhotos = (
+    <ModalWindow
+      title="Do you want to add photos?"
+      activeModal={activeModalPhotos}
+      onClose={setActiveModalPhotos}
+      textBody="Insert a link to the photo. You can choose one of ours:"
+      textBodyTwo="https://avotar.ru/avatar/krutye/150/36.jpg https://avotar.ru/avatar/krutye/150/34.jpg https://avotar.ru/avatar/pozitivnye/150/43.jpg"
+      addAlbum={addPhoto}
+    ></ModalWindow>
+  );
 
   const mainContent = albumsFromStore.map((alb) => {
     if (Number(activeAlbum.id) === alb.id) {
@@ -64,9 +93,10 @@ function Content() {
             {photosFromStore.map((photo) => (
               <img className="wrapper-content__picture" key={photo.id} src={photo.thumbnailUrl} alt="" />
             ))}
-            <button className="btn__add--photos" onClick={addPhoto}>
+            <button className="btn__add--photos" onClick={callModalWindowPhoto}>
               Add photos
             </button>
+            {modalForPhotos}
           </div>
           <div className="wrapper-content__arrow-back" onClick={toggleBack}>
             <i className="fas fa-long-arrow-alt-left"></i>
@@ -88,12 +118,7 @@ function Content() {
       <button className="btn__add--album" onClick={callModalWindow}>
         Add album
       </button>
-      <ModalWindow
-        title="Do you want to add album?"
-        activeModal={activeModal}
-        onClose={setActiveModal}
-        addAlbum={addAlbum}
-      ></ModalWindow>
+      {modalForAlbums}
     </>
   );
 }
