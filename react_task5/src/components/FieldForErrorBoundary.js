@@ -18,10 +18,11 @@ class FieldForErrorBoundary extends Component {
       throw new Error("I crashed!");
     }
     return (
-      <>
-        <h1>Get to 5</h1>
-        <h2 onClick={this.handleClick}>{this.state.counter}</h2>
-      </>
+      <div className="wrapper-error--bondary">
+        <h1>Realization Error Boundary </h1>
+        <h2>Get to 5. Click on number.</h2>
+        <h3 onClick={this.handleClick}>{this.state.counter}</h3>
+      </div>
     );
   }
 }

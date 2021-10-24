@@ -199,10 +199,15 @@
   display: block;
 }
 
-.wrapper-hook_usePre {
+.wrapper-hook_usePre,
+.wrapper-error--bondary {
   margin: 15px 0;
   border: 1px solid blueviolet;
   padding-left: 10px;
+}
+
+.wrapper-error--bondary h3 {
+  cursor: pointer;
 }
 
 .btn_hookPrevious {

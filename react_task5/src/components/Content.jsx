@@ -64,27 +64,6 @@ function Content() {
     [dispatch],
   );
 
-  const modalForAlbums = (
-    <ModalWindow
-      title="Do you want to add album?"
-      activeModal={activeModalAlbum}
-      onClose={setActiveModalAlbum}
-      textBody="If yes, enter its name and click submit."
-      addAlbum={addAlbum}
-    ></ModalWindow>
-  );
-
-  const modalForPhotos = (
-    <ModalWindow
-      title="Do you want to add photos?"
-      activeModal={activeModalPhotos}
-      onClose={setActiveModalPhotos}
-      textBody="Insert a link to the photo. You can choose one of ours:"
-      textBodyTwo="https://avotar.ru/avatar/krutye/150/36.jpg https://avotar.ru/avatar/krutye/150/34.jpg https://avotar.ru/avatar/pozitivnye/150/43.jpg"
-      addAlbum={addPhoto}
-    ></ModalWindow>
-  );
-
   const mainContent = albumsFromStore.map((alb) => {
     if (Number(activeAlbum.id) === alb.id) {
       return (
@@ -96,7 +75,16 @@ function Content() {
             <button className="btn__add--photos" onClick={callModalWindowPhoto}>
               Add photos
             </button>
-            {modalForPhotos}
+            {activeModalPhotos && (
+              <ModalWindow
+                title="Do you want to add photos?"
+                activeModal={activeModalPhotos}
+                onClose={setActiveModalPhotos}
+                textBody="Insert a link to the photo. You can choose one of ours:"
+                textBodyTwo="https://avotar.ru/avatar/krutye/150/36.jpg https://avotar.ru/avatar/krutye/150/34.jpg https://avotar.ru/avatar/pozitivnye/150/43.jpg"
+                addAlbum={addPhoto}
+              ></ModalWindow>
+            )}
           </div>
           <div className="wrapper-content__arrow-back" onClick={toggleBack}>
             <i className="fas fa-long-arrow-alt-left"></i>
@@ -118,7 +106,15 @@ function Content() {
       <button className="btn__add--album" onClick={callModalWindow}>
         Add album
       </button>
-      {modalForAlbums}
+      {activeModalAlbum && (
+        <ModalWindow
+          title="Do you want to add album?"
+          activeModal={activeModalAlbum}
+          onClose={setActiveModalAlbum}
+          textBody="If yes, enter its name and click submit."
+          addAlbum={addAlbum}
+        ></ModalWindow>
+      )}
     </>
   );
 }
