@@ -2,6 +2,7 @@ import { applyMiddleware, compose, createStore } from "redux";
 import reducer from "./reducers/reducers";
 import thunk from "redux-thunk";
 import { fetchAlbums } from "./asyncActions/fetchAlbums";
+import { fetchAllUsers } from "./asyncActions/fetchAllUsers";
 
 const store = createStore(
   reducer,
@@ -12,5 +13,6 @@ const store = createStore(
 );
 
 store.dispatch(fetchAlbums());
+store.dispatch(fetchAllUsers());
 
 export default store;

@@ -6,6 +6,8 @@ export const fetchAlbums = () => {
       .then((res) => res.json())
       .then((albums) => {
         dispatch(addManyAlbums(albums));
+        // console.log(albums);
+        // localStorage.setItem("albums", ...albums);
       })
       .catch((er) => console.log("ERRRROOR", er));
   };

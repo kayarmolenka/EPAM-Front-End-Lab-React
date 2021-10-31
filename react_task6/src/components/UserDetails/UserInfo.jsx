@@ -1,36 +1,39 @@
-import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function UserInfo() {
-  const userInfo = useSelector((state) => state.userInfo);
+  const userInfo = JSON.parse(localStorage.getItem("ActiveUser"));
 
   return (
-    <div className="user-info-wrapper">
-      <div className="user-info-wrapper-username">
-        <h1>Kanstantsin Yarmolenka </h1>
+    userInfo && (
+      <div className="user-info-wrapper">
+        <div className="user-info-wrapper-username">
+          <h1>{userInfo.username} </h1>
+        </div>
+        <div className="user-info-wrapper-description">
+          <ul>
+            <li>
+              <span>Nickname:</span> {userInfo.name}
+            </li>
+            <li>
+              <span>Email:</span> {userInfo.email}
+            </li>
+            <li>
+              <span>City:</span> {userInfo.address.city}
+            </li>
+            <li>
+              <span>Street:</span> {userInfo.address.street}
+            </li>
+            <li>
+              <span>Website:</span> {userInfo.website}
+            </li>
+            <li>
+              <span>Work:</span> {userInfo.company.name}
+            </li>
+          </ul>
+        </div>
+        <Link to="/user/:id/albums">Show albums</Link>
       </div>
-      <div className="user-info-wrapper-description">
-        <ul>
-          <li>
-            <span>Nickname:</span> {userInfo.name}
-          </li>
-          <li>
-            <span>Email:</span> {userInfo.email}
-          </li>
-          <li>
-            <span>City:</span> {userInfo.address.city}
-          </li>
-          <li>
-            <span>Street:</span> {userInfo.address.street}
-          </li>
-          <li>
-            <span>Website:</span> {userInfo.website}
-          </li>
-          <li>
-            <span>Work:</span> {userInfo.company.name}
-          </li>
-        </ul>
-      </div>
-    </div>
+    )
   );
 }
 

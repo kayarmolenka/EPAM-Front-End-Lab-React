@@ -218,3 +218,14 @@
   font-family: cursive;
   cursor: pointer;
 }
+
+.wrapper_login {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+}
+
+nav a {
+  margin-right: 10px;
+}
