@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { Route } from "react-router";
+import Content from "../Content";
 
 function UserInfo() {
   const userInfo = JSON.parse(localStorage.getItem("ActiveUser"));
@@ -32,6 +34,9 @@ function UserInfo() {
           </ul>
         </div>
         <Link to="/user/:id/albums">Show albums</Link>
+        <Route path={"/user/:id/albums"}>
+          <Content />
+        </Route>
       </div>
     )
   );

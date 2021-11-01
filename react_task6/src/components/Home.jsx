@@ -7,6 +7,8 @@ function Home() {
 
   if (isLogged) {
     history.push("/user/:id");
+  } else {
+    history.push("/albums");
   }
 
   return (

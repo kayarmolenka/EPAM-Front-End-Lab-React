@@ -8,7 +8,7 @@ function UserDetails() {
   const isLogged = localStorage.getItem("ActiveUser");
 
   if (!isLogged) {
-    history.push("/");
+    history.push("/login");
   }
   return (
     <div className="user_details_wrapper">

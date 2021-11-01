@@ -1,10 +1,13 @@
 import { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addActiveUser } from "../redux/actionCreators";
+import { useHistory } from "react-router";
 
 function LoginPage() {
   const [valueEmail, setValueEmail] = useState("");
   const [valuePassword, setValuePassword] = useState("");
+
+  const history = useHistory();
 
   const usersFromDataBase = useSelector((state) => {
     return state.users;
@@ -34,6 +37,7 @@ function LoginPage() {
     usersFromDataBase.forEach((user) => {
       if (valueEmail === user.email && valuePassword === user.name) {
         dispatch(addActiveUser(user));
+        history.push("/user/:id");
       }
     });
   };

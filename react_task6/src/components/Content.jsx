@@ -1,12 +1,9 @@
 import React, { useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Route } from "react-router";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { addOneAlbums, addOnePhotos } from "../redux/actionCreators";
 import { fetchPhotos } from "../redux/asyncActions/fetchPhotos";
 import Albums from "./Albums";
 import ModalWindow from "./ModalWindow";
-import Photos from "./Photos";
 
 function Content() {
   const [activeAlbum, setActiveAlbum] = useState(0);
@@ -14,14 +11,6 @@ function Content() {
   const [activeModalPhotos, setActiveModalPhotos] = useState(false);
 
   const dispatch = useDispatch();
-
-  const albumsFromStore = useSelector((state) => {
-    return [...state.albums, ...state.userAlbum.userAlbum];
-  });
-
-  const photosFromStore = useSelector((state) => {
-    return state.photos;
-  });
 
   const handleAlbum = useCallback(
     (album) => {
@@ -64,81 +53,6 @@ function Content() {
     [dispatch],
   );
 
-  // const photos = albumsFromStore.map((alb) => {
-  //   return (
-  //     <React.Fragment key={alb.id}>
-  //       <Route path="/albums/:id">
-  //         <div className="album-item" id={alb.id}>
-  //           {photosFromStore.map((photo) => (
-  //             <img className="wrapper-content__picture" key={photo.id} src={photo.thumbnailUrl} alt="" />
-  //           ))}
-  //           <button className="btn__add--photos" onClick={callModalWindowPhoto}>
-  //             Add photos
-  //           </button>
-  //           {activeModalPhotos && (
-  //             <ModalWindow
-  //               title="Do you want to add photos?"
-  //               activeModal={activeModalPhotos}
-  //               onClose={setActiveModalPhotos}
-  //               textBody="Insert a link to the photo. You can choose one of ours:"
-  //               textBodyTwo="https://avotar.ru/avatar/krutye/150/36.jpg https://avotar.ru/avatar/krutye/150/34.jpg https://avotar.ru/avatar/pozitivnye/150/43.jpg"
-  //               addAlbum={addPhoto}
-  //             ></ModalWindow>
-  //           )}
-  //         </div>
-  //       </Route>
-  //       <div className="wrapper-content__arrow-back" onClick={toggleBack}>
-  //         <i className="fas fa-long-arrow-alt-left"></i>
-  //         <p>Collapse album</p>
-  //       </div>
-  //     </React.Fragment>
-  //   );
-  // });
-
-  const mainContent = albumsFromStore.map((alb) => {
-    if (Number(activeAlbum.id) === alb.id) {
-      return (
-        <React.Fragment key={alb.id}>
-          <Route path="/albums/:id">
-            <div className="album-item" id={alb.id}>
-              {photosFromStore.map((photo) => (
-                <img className="wrapper-content__picture" key={photo.id} src={photo.thumbnailUrl} alt="" />
-              ))}
-              <button className="btn__add--photos" onClick={callModalWindowPhoto}>
-                Add photos
-              </button>
-              {activeModalPhotos && (
-                <ModalWindow
-                  title="Do you want to add photos?"
-                  activeModal={activeModalPhotos}
-                  onClose={setActiveModalPhotos}
-                  textBody="Insert a link to the photo. You can choose one of ours:"
-                  textBodyTwo="https://avotar.ru/avatar/krutye/150/36.jpg https://avotar.ru/avatar/krutye/150/34.jpg https://avotar.ru/avatar/pozitivnye/150/43.jpg"
-                  addAlbum={addPhoto}
-                ></ModalWindow>
-              )}
-            </div>
-          </Route>
-          <div className="wrapper-content__arrow-back" onClick={toggleBack}>
-            <i className="fas fa-long-arrow-alt-left"></i>
-            <p>Collapse album</p>
-          </div>
-        </React.Fragment>
-      );
-    }
-    // return (
-    //   <Link to="/albums/:id">
-    //     <div className="album-item" id={alb.id} key={alb.id}>
-    //       {alb.title}
-    //       <Route path="/albums/:id">
-    //         <div>hi</div>
-    //       </Route>
-    //     </div>
-    //   </Link>
-
-    // );
-  });
-
   return (
     <>
       <Albums
@@ -148,9 +62,6 @@ function Content() {
         callModalWindowPhoto={callModalWindowPhoto}
         toggleBack={toggleBack}
       />
-      {/* {mainContent} */}
-
-      {/* <Photos activeAlbum={activeAlbum} callModalWindowPhoto={callModalWindowPhoto} toggleBack={toggleBack} /> */}
       {activeModalPhotos && (
         <ModalWindow
           title="Do you want to add photos?"
