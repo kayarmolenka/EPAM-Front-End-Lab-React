@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import { Route } from "react-router";
+import { Route, useRouteMatch } from "react-router";
 import Content from "../Content";
 
 function UserInfo() {
   const userInfo = JSON.parse(localStorage.getItem("ActiveUser"));
+  const { url, path } = useRouteMatch();
 
   return (
     userInfo && (
@@ -33,8 +34,8 @@ function UserInfo() {
             </li>
           </ul>
         </div>
-        <Link to="/user/:id/albums">Show albums</Link>
-        <Route path={"/user/:id/albums"}>
+        <Link to={`${url}/albums`}>Show albums</Link>
+        <Route path={`${path}/albums`}>
           <Content />
         </Route>
       </div>

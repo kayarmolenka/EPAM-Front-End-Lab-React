@@ -12,11 +12,7 @@ const ButtonLogOut = () => {
     history.push("/");
   };
 
-  return (
-    <>
-      <button onClick={handleLogOut}>Log out</button>
-    </>
-  );
+  return <button onClick={handleLogOut}>Log out</button>;
 };
 
 export default ButtonLogOut;

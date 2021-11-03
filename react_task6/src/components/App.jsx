@@ -28,7 +28,7 @@ function App() {
           <Route path="/albums">
             <Content />
           </Route>
-          <Route path="/">
+          <Route path="/" exact>
             <Home />
           </Route>
         </Switch>
