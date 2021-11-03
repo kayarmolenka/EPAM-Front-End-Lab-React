@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useCallback } from "react";
-import { Route, useRouteMatch } from "react-router";
+import { useRouteMatch } from "react-router";
 import Photos from "./Photos";
 import { useMemo } from "react";
 
@@ -21,24 +21,24 @@ function Albums(props) {
     return albumsFromStore.map((alb) => {
       if (Number(props.activeAlbum.id) === alb.id && userInfo) {
         return (
-          <Route path={`${path}/${alb.id}`} key={alb.id}>
-            <Photos
-              activeAlbum={props.activeAlbum}
-              callModalWindowPhoto={props.callModalWindowPhoto}
-              toggleBack={props.toggleBack}
-            />
-          </Route>
+          // <Route path={`${path}/${alb.id}`} key={alb.id}>
+          <Photos
+            activeAlbum={props.activeAlbum}
+            callModalWindowPhoto={props.callModalWindowPhoto}
+            toggleBack={props.toggleBack}
+          />
+          // </Route>
         );
       }
       if (Number(props.activeAlbum.id) === alb.id) {
         return (
-          <Route path={`${path}/:${alb.id}`} key={alb.id}>
-            <Photos
-              activeAlbum={props.activeAlbum}
-              callModalWindowPhoto={props.callModalWindowPhoto}
-              toggleBack={props.toggleBack}
-            />
-          </Route>
+          // <Route path={`${path}/:${alb.id}`} key={alb.id}>
+          <Photos
+            activeAlbum={props.activeAlbum}
+            callModalWindowPhoto={props.callModalWindowPhoto}
+            toggleBack={props.toggleBack}
+          />
+          // </Route>
         );
       }
 
@@ -62,7 +62,7 @@ function Albums(props) {
     });
   }, [
     albumsFromStore,
-    path,
+    // path,
     props.activeAlbum,
     props.callModalWindowPhoto,
     props.startedEvent,

@@ -6,6 +6,10 @@ import LoginPage from "./LoginPage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ButtonLogOut from "./ButtonLogOut";
 import Home from "./Home";
+import UserInfo from "./UserDetails/UserInfo";
+import Photos from "./Photos";
+import Albums from "./Albums";
+import Album from "./Album";
 
 function App() {
   return (
@@ -19,14 +23,26 @@ function App() {
           <ButtonLogOut />
         </nav>
         <Switch>
-          <Route path="/user">
+          <Route path="/user" exact>
             <UserDetails />
           </Route>
-          <Route path="/login">
+          <Route path="/user/:id" exact>
+            <UserInfo />
+          </Route>
+          <Route path="user/:id/albums" exact>
+            <Content />
+          </Route>
+          <Route path="user/:id/albums/:id" exact>
+            <Album />
+          </Route>
+          <Route path="/login" exact>
             <LoginPage />
           </Route>
-          <Route path="/albums">
+          <Route path="/albums" exact>
             <Content />
+          </Route>
+          <Route path="/albums/:id" exact>
+            <Album />
           </Route>
           <Route path="/" exact>
             <Home />

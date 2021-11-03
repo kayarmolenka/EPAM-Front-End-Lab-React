@@ -17,11 +17,11 @@ function UserDetails() {
     <div className="user_details_wrapper">
       <Avatar />
       <Link to={`${url}/${user.id}`}>Open User Id</Link>
-      <Switch>
+      {/* <Switch>
         <Route path={`${path}/${user.id}`}>
           <UserInfo />
         </Route>
-      </Switch>
+      </Switch> */}
     </div>
   );
 }

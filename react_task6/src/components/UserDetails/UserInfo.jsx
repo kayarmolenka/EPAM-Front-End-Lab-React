@@ -35,9 +35,9 @@ function UserInfo() {
           </ul>
         </div>
         <Link to={`${url}/albums`}>Show albums</Link>
-        <Route path={`${path}/albums`}>
+        {/* <Route path={`${path}/albums`}>
           <Content />
-        </Route>
+        </Route> */}
       </div>
     )
   );
